@@ -1,0 +1,27 @@
+server:
+  port: 8082
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: 2672411561
+
+  profiles:
+    active: dev
+
+
+redis:
+  host: 192.168.124.6
+  port: 6379
+  timeout: 3000
+
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+
+

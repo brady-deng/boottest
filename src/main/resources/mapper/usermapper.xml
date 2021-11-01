@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.boottest.dao.userdao">
+    <resultMap id="usermap" type="com.example.boottest.model.usermodel">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+    </resultMap>
+    <insert id="insertUser">
+        insert into
+            user
+        (id,name,age)
+        value
+        (#{id},#{name},#{age})
+    </insert>
+
+    <update id="updateuser" parameterType="com.example.boottest.model.usermodel">
+        update
+            user
+        set
+            name = #{name}
+            ,age = #{age}
+            ,sex = #{sex}
+        where
+            id = #{id}
+    </update>
+
+    <select id="selectname" resultType="com.example.boottest.model.usermodel">
+        select
+            name
+        from
+            user
+        group by
+            name
+    </select>
+</mapper>
