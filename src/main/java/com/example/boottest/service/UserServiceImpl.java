@@ -2,7 +2,7 @@ package com.example.boottest.service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.boottest.dao.userdao;
-import com.example.boottest.model.usermodel;
+import com.example.boottest.model.Usermodel;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,5 +10,5 @@ import org.springframework.stereotype.Service;
  * @date 2021/10/31
  **/
 @Service
-public class UserServiceImpl extends ServiceImpl<userdao, usermodel> implements UserService {
+public class UserServiceImpl extends ServiceImpl<userdao, Usermodel> implements UserService {
 }

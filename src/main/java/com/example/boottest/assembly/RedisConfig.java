@@ -19,7 +19,7 @@ import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
 @EnableCaching
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 60 * 60 *24)
+
 public class RedisConfig {
 
 
@@ -49,7 +49,7 @@ public class RedisConfig {
         JedisPool jedisPool=new JedisPool(config,host,port,timeout);
         return jedisPool;
     }
-    
+
     @Bean
     public static ConfigureRedisAction configureRedisAction(){return ConfigureRedisAction.NO_OP;}
 

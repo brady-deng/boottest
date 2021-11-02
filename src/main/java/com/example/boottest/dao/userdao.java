@@ -2,13 +2,13 @@ package com.example.boottest.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.boottest.dto.User;
-import com.example.boottest.model.usermodel;
+import com.example.boottest.model.Usermodel;
 
 import java.util.ArrayList;
 
-public interface userdao extends BaseMapper<usermodel> {
+public interface userdao extends BaseMapper<Usermodel> {
 
-    public Integer updateuser(usermodel usermodel);
-    public ArrayList<usermodel> selectname();
+    public Integer updateuser(Usermodel usermodel);
+    public ArrayList<Usermodel> selectname();
     public Integer insertUser(User user);
 }

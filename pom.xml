@@ -121,17 +121,18 @@
 			<artifactId>mybatis-plus-boot-starter</artifactId>
 			<version>3.2.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>1.2.8</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.2</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus -->
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus</artifactId>
-			<version>3.3.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -153,10 +154,7 @@
 			<version>2.7.5</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
 		<dependency>
 			<groupId>redis.clients</groupId>

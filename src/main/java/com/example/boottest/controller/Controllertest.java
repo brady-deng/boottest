@@ -3,7 +3,7 @@ package com.example.boottest.controller;
 
 import com.example.boottest.dto.Personob;
 import com.example.boottest.dto.person;
-import com.example.boottest.model.usermodel;
+import com.example.boottest.model.Usermodel;
 import com.example.boottest.service.servicetest;
 import com.example.boottest.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -27,6 +27,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 
 @Slf4j
@@ -50,11 +54,14 @@ public class Controllertest {
     @Autowired
     private UserService userService;
 
-//    @Autowired
-//    private RedisUtils redisUtils;
-
     @Autowired
-    private RedisTemplate<String,String> redisTemplate;
+    private RedisTemplate<String, String> redisTemplate;
+
+
+
+
+
+    private static Map<String, String> map = new HashMap<>();
 
     @GetMapping("/hello")
     @ApiOperation(value = "this is a hello test")
@@ -178,9 +185,50 @@ public class Controllertest {
     }
 
     @GetMapping("/{id}")
-    public usermodel user(@PathVariable("id") String id) {
+    public Usermodel user(@PathVariable("id") String id) {
         return userService.getById(id);
     }
+
+    @PutMapping("/user/{name}")
+    public String putUser(@PathVariable("name") String name) {
+        Usermodel usermodel = Usermodel.builder().name(name).age(12).id(2).sex("Female").build();
+        userService.save(usermodel);
+        return "SUCCESS";
+    }
+
+    @PutMapping("/redis/{name}")
+    public String redisPut(@PathVariable("name") String name) {
+        String value = UUID.randomUUID().toString();
+        redisTemplate.opsForValue().set(name, value);
+        redisTemplate.expire(name, 30, TimeUnit.MINUTES);
+        return value;
+    }
+
+
+    @GetMapping("/redis/{name}")
+    public String redisGet(@PathVariable("name") String name) {
+        return redisTemplate.opsForValue().get(name);
+    }
+
+
+    @PutMapping("/map/{name}")
+    public String mapPut(@PathVariable("name") String name) {
+        String value = UUID.randomUUID().toString();
+        map.put(name, value);
+        return value;
+    }
+
+    @GetMapping("/map/{name}")
+    public String mapGet(@PathVariable("name") String name) {
+        String value = UUID.randomUUID().toString();
+        return map.get(name);
+    }
+
+    @GetMapping("/success")
+    public String success() {
+        return "success";
+    }
+
 
 
 

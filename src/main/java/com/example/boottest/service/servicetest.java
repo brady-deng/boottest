@@ -2,15 +2,13 @@ package com.example.boottest.service;
 
 
 import com.example.boottest.dao.userdao;
-import com.example.boottest.model.usermodel;
+import com.example.boottest.model.Usermodel;
 import com.example.boottest.dto.person;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.ContextLoader;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -26,7 +24,7 @@ public class servicetest implements servicete{
 
     @Transactional
     public Integer updateuser(String name){
-        usermodel udermodelOb = new usermodel();
+        Usermodel udermodelOb = new Usermodel();
 
 //        udermodelOb.setSex("F");
         int save = userdaoOb.updateuser(udermodelOb);
@@ -52,7 +50,7 @@ public class servicetest implements servicete{
         return ob.toString();
     }
 
-    public ArrayList<usermodel> getnames(){
+    public ArrayList<Usermodel> getnames(){
         return userdaoOb.selectname();
     }
 

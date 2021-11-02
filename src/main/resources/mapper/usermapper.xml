@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.boottest.dao.userdao">
-    <resultMap id="usermap" type="com.example.boottest.model.usermodel">
+    <resultMap id="usermap" type="com.example.boottest.model.Usermodel">
         <result column="id" jdbcType="INTEGER" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="age" jdbcType="INTEGER" property="age"/>
@@ -17,7 +17,7 @@
         (#{id},#{name},#{age})
     </insert>
 
-    <update id="updateuser" parameterType="com.example.boottest.model.usermodel">
+    <update id="updateuser" parameterType="com.example.boottest.model.Usermodel">
         update
             user
         set
@@ -28,7 +28,7 @@
             id = #{id}
     </update>
 
-    <select id="selectname" resultType="com.example.boottest.model.usermodel">
+    <select id="selectname" resultType="com.example.boottest.model.Usermodel">
         select
             name
         from
