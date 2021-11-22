@@ -6,7 +6,7 @@ import com.example.boottest.model.Usermodel;
 
 import java.util.ArrayList;
 
-public interface userdao extends BaseMapper<Usermodel> {
+public interface UserDao extends BaseMapper<Usermodel> {
 
     public Integer updateuser(Usermodel usermodel);
     public ArrayList<Usermodel> selectname();

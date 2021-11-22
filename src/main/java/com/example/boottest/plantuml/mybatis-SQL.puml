@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+
+BaseMapper -> MybatisMapperProxy: invoke
+MybatisMapperProxy -> MybatisMapperMethod: execute
+MybatisMapperMethod -> SqlSession: selectList
+SqlSession -> SqlSessionInterceptor: invoke
+SqlSessionInterceptor -> SqlSessionUtils: getSqlSession
+SqlSessionUtils -> SqlSessionFactory: openSession
+SqlSessionFactory -> Configuration: getEnvironment
+Configuration --> SqlSessionFactory: return Environment
+SqlSessionFactory -> TransactionFactory: newTransaction
+TransactionFactory --> SqlSessionFactory: return Transaction
+SqlSessionFactory -> Configuration: newExecutor
+Configuration -> InterceptorChain: pluginAll
+InterceptorChain --> Configuration: return Object
+Configuration --> SqlSessionFactory: return Executor
+SqlSessionFactory --> SqlSessionUtils: return SqlSession
+SqlSessionUtils --> SqlSessionInterceptor: return SqlSession
+SqlSessionInterceptor -> SqlSessionInterceptor: invoke
+SqlSessionInterceptor -> SqlSession: selectList
+SqlSession -> Executor: query
+Executor -> Plugin: invoke
+Plugin -> Interceptor: intercept
+Interceptor --> Plugin: return Object
+Plugin --> SqlSession: Object
+SqlSessionInterceptor -> SqlSession: commit
+SqlSessionInterceptor -> SqlSessionUtils: closeSqlSession
+SqlSessionUtils --> SqlSessionInterceptor: void
+SqlSessionInterceptor --> SqlSession: return Object
+SqlSession --> MybatisMapperMethod: return Object
+MybatisMapperMethod --> MybatisMapperProxy: return Object
+MybatisMapperProxy --> BaseMapper: return Object
+
+
+
+
+@enduml

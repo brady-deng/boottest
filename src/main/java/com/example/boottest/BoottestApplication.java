@@ -9,7 +9,17 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 
-@ComponentScan({"com.example.boottest.service","com.example.boottest.controller","com.example.boottest.assembly","com.example.boottest.dto","com.example.boottest.utils","com.example.boottest.task","com.example.boottest.controllertest","com.example.boottest.aspect"})
+@ComponentScan({"com.example.boottest.service"
+		,"com.example.boottest.controller"
+		,"com.example.boottest.assembly"
+		,"com.example.boottest.dto"
+		,"com.example.boottest.utils"
+		,"com.example.boottest.task"
+		,"com.example.boottest.controllertest"
+		,"com.example.boottest.aspect"
+		,"com.example.boottest.config"
+}
+)
 @MapperScan(basePackages = {"com.example.boottest.dao","com.example.boottest.mapper"})
 @EnableScheduling
 @SpringBootApplication

@@ -1,12 +1,17 @@
 package com.example.boottest.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.example.boottest.dao.UserDao;
 import com.example.boottest.dto.Personob;
 import com.example.boottest.dto.person;
 import com.example.boottest.model.Usermodel;
 import com.example.boottest.service.servicetest;
 import com.example.boottest.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageSerializable;
+import com.google.gson.Gson;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -26,10 +31,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
@@ -53,6 +55,9 @@ public class Controllertest {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserDao userDao;
 
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
@@ -185,8 +190,10 @@ public class Controllertest {
     }
 
     @GetMapping("/{id}")
-    public Usermodel user(@PathVariable("id") String id) {
-        return userService.getById(id);
+    public PageSerializable<Usermodel> user(@PathVariable("id") String id) {
+        PageHelper.startPage(0,10);
+        List<Usermodel> usermodels = userDao.selectList(new LambdaQueryWrapper<>());
+        return new PageSerializable<>(usermodels);
     }
 
     @PutMapping("/user/{name}")

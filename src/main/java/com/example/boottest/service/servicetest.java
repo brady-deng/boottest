@@ -1,7 +1,7 @@
 package com.example.boottest.service;
 
 
-import com.example.boottest.dao.userdao;
+import com.example.boottest.dao.UserDao;
 import com.example.boottest.model.Usermodel;
 import com.example.boottest.dto.person;
 
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 @Service
 public class servicetest implements servicete{
     @Resource
-    private userdao userdaoOb;
+    private UserDao userDaoOb;
     @Autowired
     private ApplicationContext applicationContext;
 
@@ -27,7 +27,7 @@ public class servicetest implements servicete{
         Usermodel udermodelOb = new Usermodel();
 
 //        udermodelOb.setSex("F");
-        int save = userdaoOb.updateuser(udermodelOb);
+        int save = userDaoOb.updateuser(udermodelOb);
         this.testPublic();
         this.testPrivate();
         servicetest ob = (servicetest) applicationContext.getBean("servicetest");
@@ -51,7 +51,7 @@ public class servicetest implements servicete{
     }
 
     public ArrayList<Usermodel> getnames(){
-        return userdaoOb.selectname();
+        return userDaoOb.selectname();
     }
 
     public void decimaltest(){
