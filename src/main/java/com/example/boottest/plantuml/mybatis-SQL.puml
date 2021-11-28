@@ -6,8 +6,8 @@ autonumber
 
 BaseMapper -> MybatisMapperProxy: invoke
 MybatisMapperProxy -> MybatisMapperMethod: execute
-MybatisMapperMethod -> SqlSession: selectList
-SqlSession -> SqlSessionInterceptor: invoke
+MybatisMapperMethod -> SqlSessionTemplate: selectList
+SqlSessionTemplate -> SqlSessionInterceptor: invoke
 SqlSessionInterceptor -> SqlSessionUtils: getSqlSession
 SqlSessionUtils -> SqlSessionFactory: openSession
 SqlSessionFactory -> Configuration: getEnvironment
