@@ -2,7 +2,7 @@ package com.example.boottest.service;
 
 
 import com.example.boottest.dao.UserDao;
-import com.example.boottest.model.Usermodel;
+import com.example.boottest.model.UserModel;
 import com.example.boottest.dto.person;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class servicetest implements servicete{
 
     @Transactional
     public Integer updateuser(String name){
-        Usermodel udermodelOb = new Usermodel();
+        UserModel udermodelOb = new UserModel();
 
 //        udermodelOb.setSex("F");
         int save = userDaoOb.updateuser(udermodelOb);
@@ -50,7 +50,7 @@ public class servicetest implements servicete{
         return ob.toString();
     }
 
-    public ArrayList<Usermodel> getnames(){
+    public ArrayList<UserModel> getnames(){
         return userDaoOb.selectname();
     }
 

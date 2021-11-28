@@ -5,13 +5,12 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.boottest.dao.UserDao;
 import com.example.boottest.dto.Personob;
 import com.example.boottest.dto.person;
-import com.example.boottest.model.Usermodel;
+import com.example.boottest.model.UserModel;
 import com.example.boottest.service.servicetest;
 import com.example.boottest.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageSerializable;
-import com.google.gson.Gson;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -190,15 +189,21 @@ public class Controllertest {
     }
 
     @GetMapping("/{id}")
-    public PageSerializable<Usermodel> user(@PathVariable("id") String id) {
+    public PageSerializable<UserModel> user(@PathVariable("id") String id) {
         PageHelper.startPage(0,10);
-        List<Usermodel> usermodels = userDao.selectList(new LambdaQueryWrapper<>());
+        List<UserModel> usermodels = userDao.selectList(new LambdaQueryWrapper<>());
+        List<UserModel> usermodels2 = userDao.selectList(new LambdaQueryWrapper<>());
         return new PageSerializable<>(usermodels);
+    }
+
+    @GetMapping("/users")
+    public List<UserModel> users() {
+        return userService.getList();
     }
 
     @PutMapping("/user/{name}")
     public String putUser(@PathVariable("name") String name) {
-        Usermodel usermodel = Usermodel.builder().name(name).age(12).id(2).sex("Female").build();
+        UserModel usermodel = UserModel.builder().name(name).age(12).id(2).sex("Female").build();
         userService.save(usermodel);
         return "SUCCESS";
     }

@@ -3,7 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.boottest.dao.UserDao">
-    <resultMap id="usermap" type="com.example.boottest.model.Usermodel">
+    <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true"/>
+    <resultMap id="usermap" type="com.example.boottest.model.UserModel">
         <result column="id" jdbcType="INTEGER" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="age" jdbcType="INTEGER" property="age"/>
@@ -17,7 +18,7 @@
         (#{id},#{name},#{age})
     </insert>
 
-    <update id="updateuser" parameterType="com.example.boottest.model.Usermodel">
+    <update id="updateuser" parameterType="com.example.boottest.model.UserModel">
         update
             user
         set
@@ -28,7 +29,7 @@
             id = #{id}
     </update>
 
-    <select id="selectname" resultType="com.example.boottest.model.Usermodel">
+    <select id="selectname" resultType="com.example.boottest.model.UserModel">
         select
             name
         from
