@@ -238,7 +238,13 @@ public class Controllertest {
 
     @GetMapping("/success")
     public String success() {
+        log.info("Thread name:{}", Thread.currentThread().getName());
         return "success";
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(UUID.randomUUID());
     }
 
 
