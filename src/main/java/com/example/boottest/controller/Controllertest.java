@@ -2,6 +2,7 @@ package com.example.boottest.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.example.boottest.assembly.ObConfig;
 import com.example.boottest.dao.UserDao;
 import com.example.boottest.dto.Personob;
 import com.example.boottest.dto.person;
@@ -57,6 +58,9 @@ public class Controllertest {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private ObConfig obConfig;
 
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
@@ -240,6 +244,12 @@ public class Controllertest {
     public String success() {
         log.info("Thread name:{}", Thread.currentThread().getName());
         return "success";
+    }
+
+
+    @GetMapping("/beanTest")
+    public String ob() {
+        return obConfig.getName();
     }
 
 
